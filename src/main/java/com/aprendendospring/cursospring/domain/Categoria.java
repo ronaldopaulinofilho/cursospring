@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class Categoria implements Serializable {
@@ -12,29 +11,18 @@ public class Categoria implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String nome;
 
     @ManyToMany(mappedBy="categorias")
-    public List<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
     private List<Produto> produtos = new ArrayList<>();
     public Categoria() {
     }
 
-    public Categoria(Integer id, String nome) {
+    public Categoria (Integer id, String nome) {
         super();
         this.id = id;
         this.nome = nome;
-    }
-
-    public Integer getId() {
+    }public Integer getId() {
         return id;
     }
 
@@ -50,6 +38,15 @@ public class Categoria implements Serializable {
         this.nome = nome;
     }
 
+    public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -60,6 +57,12 @@ public class Categoria implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+
+        final int prime =31;
+        int result =1;
+        result = prime * result + ((id== null) ? 0 : id.hashCode());
+        return result;
     }
+
+
 }

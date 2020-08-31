@@ -16,6 +16,20 @@ public class Produto implements Serializable {
     private Double preco;
 
 
+
+
+    @ManyToMany
+    @JoinTable(name =" PRODUTO_CATEGORIA",
+            joinColumns = @JoinColumn(name="produto_id"),
+            inverseJoinColumns = @JoinColumn(name = "categora_id"))
+    private List<Categoria> categorias = new ArrayList<>();
+
+    public Produto(Integer id, String nome, Double preco) {
+        super();
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
     public Integer getId() {
         return id;
     }
@@ -47,16 +61,6 @@ public class Produto implements Serializable {
     public void setCategorias(List<Categoria> categorias) {
         this.categorias = categorias;
     }
-    @ManyToMany
-    @JoinTable(name =" PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name="produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "categora_id"))
-    private List<Categoria> categorias = new ArrayList<>();
-
-    public Produto(Integer id, String nome, Double preco) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-    }
 
     public Produto(){
 
@@ -72,6 +76,11 @@ public class Produto implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
     }
+
 }
