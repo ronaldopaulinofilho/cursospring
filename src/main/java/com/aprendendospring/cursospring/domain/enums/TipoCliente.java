@@ -1,4 +1,4 @@
-package com.aprendendospring.cursospring.domain;
+package com.aprendendospring.cursospring.domain.enums;
 
 public enum TipoCliente {
     PESSOAFISICA(1, "Pessoa Física"),
