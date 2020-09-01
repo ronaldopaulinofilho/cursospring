@@ -1,6 +1,7 @@
 package com.aprendendospring.cursospring.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,7 +17,8 @@ public class Endereco implements Serializable {
     private String complemento;
     private String bairro;
     private String cep;
-    @JsonBackReference
+
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
