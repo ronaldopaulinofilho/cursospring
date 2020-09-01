@@ -1,5 +1,7 @@
 package com.aprendendospring.cursospring.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,19 +16,19 @@ public class Endereco implements Serializable {
     private String complemento;
     private String bairro;
     private String cep;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     @ManyToOne
     @JoinColumn(name = "cidade_id")
     private Cidade cidade;
-    public Endereco(Object o, String rua_flores, String s, String s1, String jardim, String s2, Cliente cli1, Cidade c1){
+    public Endereco(){
 
     }
 
-
-
-    public Endereco() {
+    public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep, Cliente cliente, Cidade cidade) {
+        super();
         this.id = id;
         this.logradouro = logradouro;
         this.numero = numero;
