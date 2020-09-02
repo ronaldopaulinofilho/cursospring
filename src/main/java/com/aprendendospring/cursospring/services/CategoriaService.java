@@ -2,8 +2,10 @@ package com.aprendendospring.cursospring.services;
 
 import com.aprendendospring.cursospring.domain.Categoria;
 import com.aprendendospring.cursospring.repositories.CategoriaRepository;
+import com.aprendendospring.cursospring.services.exceptions.DataIntegrityException;
 import com.aprendendospring.cursospring.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 
@@ -25,6 +27,16 @@ public class CategoriaService {
     public Categoria update(Categoria obj){
         find(obj.getId());
         return repo.save(obj);
+    }
+    public void delete (Integer id){
+        find(id);
+        try {
+            repo.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+
+        }
     }
 
 
