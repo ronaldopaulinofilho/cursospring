@@ -1,6 +1,7 @@
 package com.aprendendospring.cursospring.services;
 
 import com.aprendendospring.cursospring.domain.Categoria;
+import com.aprendendospring.cursospring.dto.CategoriaDTO;
 import com.aprendendospring.cursospring.repositories.CategoriaRepository;
 import com.aprendendospring.cursospring.services.exceptions.DataIntegrityException;
 import com.aprendendospring.cursospring.services.exceptions.ObjectNotFoundException;
@@ -10,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +49,9 @@ public class CategoriaService {
 
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
+    }
+    public Categoria fromDTO(CategoriaDTO objDto) {
+        return new Categoria(objDto.getId(), objDto.getNome());
     }
 }
 
