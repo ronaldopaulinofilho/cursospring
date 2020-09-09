@@ -1,6 +1,5 @@
 package com.aprendendospring.cursospring.services;
 
-import com.aprendendospring.cursospring.domain.Categoria;
 import com.aprendendospring.cursospring.domain.Cidade;
 import com.aprendendospring.cursospring.domain.Cliente;
 import com.aprendendospring.cursospring.domain.Endereco;
@@ -56,7 +55,7 @@ public class ClienteService {
             repo.deleteById(id);
         }
         catch (DataIntegrityViolationException e) {
-            throw new DataIntegrityException("Não é possível excluir porque há entidades relacionadas");
+            throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados");
 
         }
     }
