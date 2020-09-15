@@ -1,5 +1,6 @@
 package com.aprendendospring.cursospring.domain;
 
+import com.aprendendospring.cursospring.repositories.ProdutoRepository;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -60,7 +61,7 @@ public class Produto implements Serializable {
         this.nome = nome;
     }
 
-    public Double getPreco() {
+    public ProdutoRepository getPreco() {
         return preco;
     }
 
