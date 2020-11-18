@@ -76,7 +76,7 @@ public class ItemPedido implements Serializable {
         return preco;
     }
 
-    public void setPreco(ProdutoRepository preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
